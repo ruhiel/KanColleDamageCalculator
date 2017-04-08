@@ -2,8 +2,56 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:KanColleDamageCalculator"
-             StartupUri="MainWindow.xaml">
+             xmlns:model="clr-namespace:KanColleDamageCalculator.Models"
+             xmlns:converters="clr-namespace:KanColleDamageCalculator.Views.Converters"
+             StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!-- Accent and AppTheme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ObjectDataProvider x:Key="ArtillerySpottings" MethodName="GetValues" ObjectType="{x:Type model:ArtillerySpotting}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="model:ArtillerySpotting"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ObjectDataProvider x:Key="AttackTypes" MethodName="GetValues" ObjectType="{x:Type model:AttackType}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="model:AttackType"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ObjectDataProvider x:Key="DamageStates" MethodName="GetValues" ObjectType="{x:Type model:DamageState}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="model:DamageState"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ObjectDataProvider x:Key="EngagementForms" MethodName="GetValues" ObjectType="{x:Type model:EngagementForm}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="model:EngagementForm"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ObjectDataProvider x:Key="Formations" MethodName="GetValues" ObjectType="{x:Type model:Formation}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="model:Formation"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ObjectDataProvider x:Key="NightBattleSpecialAttacks" MethodName="GetValues" ObjectType="{x:Type model:NightBattleSpecialAttack}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="model:NightBattleSpecialAttack"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <converters:ArtillerySpottingConverter x:Key="ArtillerySpottingConverter"/>
+            <converters:AttackTypeConverter x:Key="AttackTypeConverter"/>
+            <converters:DamageStateConverter x:Key="DamageStateConverter"/>
+            <converters:EngagementFormConverter x:Key="EngagementFormConverter"/>
+            <converters:FormationConverter x:Key="FormationConverter"/>
+            <converters:NightBattleSpecialAttackConverter x:Key="NightBattleSpecialAttackConverter"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

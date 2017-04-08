@@ -1,0 +1,287 @@
+﻿<Controls:MetroWindow x:Class="KanColleDamageCalculator.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KanColleDamageCalculator"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:vm="clr-namespace:KanColleDamageCalculator.ViewModels"
+        xmlns:converters="clr-namespace:KanColleDamageCalculator.Views.Converters"
+        mc:Ignorable="d"
+        xmlns:model="clr-namespace:KanColleDamageCalculator.Models"
+        Title="艦これダメージ計算機" Height="350" Width="700"
+        BorderBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1">
+    <Controls:MetroWindow.DataContext>
+        <vm:MainWindowViewModel/>
+    </Controls:MetroWindow.DataContext>
+    <Controls:MetroWindow.Resources>
+        <converters:ContainsToVisibilityConverter x:Key="ContainsToVisibilityConverter"/>
+    </Controls:MetroWindow.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" Margin="3" DisplayMemberPath="Name" ItemsSource="{Binding Ships}" SelectedItem="{Binding FriendShip.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Grid.Column="1" Margin="3" ItemsSource="{Binding ShipTypes}" SelectedItem="{Binding SelectShipType.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Margin="3" FontSize="16" Text="{Binding FriendShip.Value.Slot1Num}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ComboBox Grid.Column="1" Margin="3" DisplayMemberPath="Name" ItemsSource="{Binding Equips1}" SelectedItem="{Binding Slot1.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Grid.Column="2" Margin="3" ItemsSource="{Binding EquipTypes1}" SelectedItem="{Binding NowSelectEquipType1.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Controls:NumericUpDown Grid.Column="3" Margin="3" Value="{Binding Slot1Improvement.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Maximum="10" Minimum="0"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Margin="3" FontSize="16" Text="{Binding FriendShip.Value.Slot2Num}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ComboBox Grid.Column="1" Margin="3" DisplayMemberPath="Name" ItemsSource="{Binding Equips2}" SelectedItem="{Binding Slot2.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Grid.Column="2" Margin="3" ItemsSource="{Binding EquipTypes2}" SelectedItem="{Binding NowSelectEquipType2.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Controls:NumericUpDown Grid.Column="3" Margin="3" Value="{Binding Slot2Improvement.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Maximum="10" Minimum="0"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Margin="3" FontSize="16" Text="{Binding FriendShip.Value.Slot3Num}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ComboBox Grid.Column="1" Margin="3" DisplayMemberPath="Name" ItemsSource="{Binding Equips3}" SelectedItem="{Binding Slot3.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Grid.Column="2" Margin="3" ItemsSource="{Binding EquipTypes3}" SelectedItem="{Binding NowSelectEquipType3.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Controls:NumericUpDown Grid.Column="3" Margin="3" Value="{Binding Slot3Improvement.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Maximum="10" Minimum="0"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Margin="3" FontSize="16" Text="{Binding FriendShip.Value.Slot4Num}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ComboBox Grid.Column="1" Margin="3" DisplayMemberPath="Name" ItemsSource="{Binding Equips4}" SelectedItem="{Binding Slot4.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Grid.Column="2" Margin="3" ItemsSource="{Binding EquipTypes4}" SelectedItem="{Binding NowSelectEquipType4.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Controls:NumericUpDown Grid.Column="3" Margin="3" Value="{Binding Slot4Improvement.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Maximum="10" Minimum="0"/>
+            </Grid>
+            <DockPanel>
+                <TextBlock Margin="3" Text="弾薬" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Controls:NumericUpDown Margin="3" Interval="10" Value="{Binding RemainAmmunition.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100"/>
+                <ComboBox Margin="3" ItemsSource="{Binding Source={StaticResource DamageStates}}" SelectedItem="{Binding SelectedDamageState.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource DamageStateConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel Grid.Column="0">
+                        <TextBlock Text="火力:"/>
+                        <TextBlock Text="{Binding FirePowerSum.Value}"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="1">
+                        <TextBlock Text="雷装:"/>
+                        <TextBlock Text="{Binding TorpedorSum.Value}"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="2">
+                        <TextBlock Text="爆装:"/>
+                        <TextBlock Text="{Binding BomberSum.Value}"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="3">
+                        <TextBlock Text="対潜:"/>
+                        <TextBlock Text="{Binding ASWSum.Value}"/>
+                    </WrapPanel>
+                </Grid>
+            </DockPanel>
+           
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <ComboBox Margin="3" ItemsSource="{Binding Source={StaticResource AttackTypes}}" SelectedItem="{Binding SelectedAttackType.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource AttackTypeConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox Margin="3" ItemsSource="{Binding Source={StaticResource ArtillerySpottings}}" SelectedItem="{Binding SelectedArtillerySpotting.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource ArtillerySpottingConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <ComboBox.Visibility>
+                    <Binding Path="SelectedAttackType.Value" Converter="{StaticResource ContainsToVisibilityConverter}">
+                        <Binding.ConverterParameter>
+                            <x:Array Type="model:AttackType">
+                                <model:AttackType>ArtilleryDuel</model:AttackType>
+                            </x:Array>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </ComboBox.Visibility>
+            </ComboBox>
+            <ComboBox Margin="3" ItemsSource="{Binding Source={StaticResource EngagementForms}}" SelectedItem="{Binding SelectedEngagementForm.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource EngagementFormConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <ComboBox.Visibility>
+                    <Binding Path="SelectedAttackType.Value" Converter="{StaticResource ContainsToVisibilityConverter}">
+                        <Binding.ConverterParameter>
+                            <x:Array Type="model:AttackType">
+                                <model:AttackType>ArtilleryDuel</model:AttackType>
+                                <model:AttackType>ArtilleryDuelAir</model:AttackType>
+                                <model:AttackType>ArtilleryDuelSub</model:AttackType>
+                                <model:AttackType>LightningBattle</model:AttackType>
+                            </x:Array>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </ComboBox.Visibility>
+            </ComboBox>
+            <ComboBox Margin="3" ItemsSource="{Binding Source={StaticResource Formations}}" SelectedItem="{Binding SelectedFormation.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource FormationConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <ComboBox.Visibility>
+                    <Binding Path="SelectedAttackType.Value" Converter="{StaticResource ContainsToVisibilityConverter}">
+                        <Binding.ConverterParameter>
+                            <x:Array Type="model:AttackType">
+                                <model:AttackType>ArtilleryDuel</model:AttackType>
+                                <model:AttackType>ArtilleryDuelAir</model:AttackType>
+                                <model:AttackType>ArtilleryDuelSub</model:AttackType>
+                                <model:AttackType>LightningBattle</model:AttackType>
+                            </x:Array>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </ComboBox.Visibility>
+            </ComboBox>
+            <ComboBox Margin="3" ItemsSource="{Binding Source={StaticResource NightBattleSpecialAttacks}}" SelectedItem="{Binding SelectedNightBattleSpecialAttack.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource NightBattleSpecialAttackConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <ComboBox.Visibility>
+                    <Binding Path="SelectedAttackType.Value" Converter="{StaticResource ContainsToVisibilityConverter}">
+                        <Binding.ConverterParameter>
+                            <x:Array Type="model:AttackType">
+                                <model:AttackType>NightBattle</model:AttackType>
+                            </x:Array>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </ComboBox.Visibility>
+            </ComboBox>
+            <CheckBox Margin="3" Content="夜間触接" IsChecked="{Binding IsNighttimeTouching.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <CheckBox.Visibility>
+                    <Binding Path="SelectedAttackType.Value" Converter="{StaticResource ContainsToVisibilityConverter}">
+                        <Binding.ConverterParameter>
+                            <x:Array Type="model:AttackType">
+                                <model:AttackType>NightBattle</model:AttackType>
+                            </x:Array>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </CheckBox.Visibility>
+            </CheckBox>
+            <CheckBox Margin="3" Content="三式弾特効" IsChecked="{Binding Type3ShellSpecialEffect.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <CheckBox.Visibility>
+                    <Binding Path="SelectedAttackType.Value" Converter="{StaticResource ContainsToVisibilityConverter}">
+                        <Binding.ConverterParameter>
+                            <x:Array Type="model:AttackType">
+                                <model:AttackType>ArtilleryDuel</model:AttackType>
+                                <model:AttackType>NightBattle</model:AttackType>
+                            </x:Array>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </CheckBox.Visibility>
+            </CheckBox>
+            <CheckBox Margin="3" Content="WG特効" IsChecked="{Binding WG43SpecialEffect.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <CheckBox.Visibility>
+                    <Binding Path="SelectedAttackType.Value" Converter="{StaticResource ContainsToVisibilityConverter}">
+                        <Binding.ConverterParameter>
+                            <x:Array Type="model:AttackType">
+                                <model:AttackType>ArtilleryDuel</model:AttackType>
+                                <model:AttackType>NightBattle</model:AttackType>
+                            </x:Array>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </CheckBox.Visibility>
+            </CheckBox>
+            <CheckBox Margin="3" Content="徹甲弾特効" IsChecked="{Binding ApShellEffect.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <CheckBox.Visibility>
+                    <Binding Path="SelectedAttackType.Value" Converter="{StaticResource ContainsToVisibilityConverter}">
+                        <Binding.ConverterParameter>
+                            <x:Array Type="model:AttackType">
+                                <model:AttackType>ArtilleryDuel</model:AttackType>
+                            </x:Array>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </CheckBox.Visibility>
+            </CheckBox>
+            <ComboBox Margin="3" ItemsSource="{Binding ReconnaissanceAircraft}" SelectedItem="{Binding SelectedReconnaissanceAircraft.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.Visibility>
+                    <Binding Path="SelectedAttackType.Value" Converter="{StaticResource ContainsToVisibilityConverter}">
+                        <Binding.ConverterParameter>
+                            <x:Array Type="model:AttackType">
+                                <model:AttackType>AirAttack</model:AttackType>
+                            </x:Array>
+                        </Binding.ConverterParameter>
+                    </Binding>
+                </ComboBox.Visibility>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <ComboBox Margin="3" DisplayMemberPath="Name" SelectedIndex="0" ItemsSource="{Binding EnemyShips}" SelectedItem="{Binding EnemyShip.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Column="0">
+                    <TextBlock Text="耐久:"/>
+                    <TextBlock Text="{Binding HP.Value}"/>
+                </WrapPanel>
+                <WrapPanel Grid.Column="1">
+                    <TextBlock Text="装甲:"/>
+                    <TextBlock Text="{Binding Armor.Value}"/>
+                </WrapPanel>
+            </Grid>
+            <TextBlock>
+                <Run Text="{Binding MinDamage.Value}"/>
+                <Run Text="～"/>
+                <Run Text="{Binding MaxDamage.Value}"/>
+            </TextBlock>
+            <TextBlock>
+                <Run Text="{Binding MinCriticalDamage.Value}"/>
+                <Run Text="～"/>
+                <Run Text="{Binding MaxCriticalDamage.Value}"/>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Controls:MetroWindow>
